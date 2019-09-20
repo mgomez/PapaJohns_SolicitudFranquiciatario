@@ -5,8 +5,12 @@
  */
 var data = [];
 var dataFinal = [];
+var _options = "{{#each this}}<option value='{{value}}'>{{text}}</option>{{/each}}";
 
 $(function() {
+  //select2
+  $("select").select2();
+  //informacion general
   $.get("js/data.json").then(function(r) {
     data = r;
 
@@ -43,5 +47,23 @@ $(function() {
     }).toArray();
 
     console.log(dataFinal);
+
+    var Franquicias = Enumerable.from(dataFinal).select(function(el) {
+      return {
+        "value": (el.Franquicia).replace(/\s/g, ""),
+        "text": el.Franquicia
+      }
+    }).toArray();
+
+    var renderOptions = Handlebars.compile(_options)(Franquicias);
+
+    $("#cbGrupo").html(renderOptions);
+  });
+  //cambio de grupo
+  $("#cbGrupo").on("change", function() {
+    var grupo = $(this).val();
+    if (grupo) {
+      $("#cbCiudad").html();
+    }
   });
 });
