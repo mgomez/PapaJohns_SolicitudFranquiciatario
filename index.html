@@ -7,84 +7,180 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <meta name="msapplication-TileColor" content="#b91d47">
+  <meta name="theme-color" content="#ffffff">
   <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/main.css">
-  <meta name="theme-color" content="#fafafa">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.5.0/css/bootstrap4-toggle.min.css" rel="stylesheet">
 </head>
 
 <body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDxSwMZfx-3RCD3slUYNcV-T0-jqpY5gJ8",
+    authDomain: "integrador-f9629.firebaseapp.com",
+    databaseURL: "https://integrador-f9629.firebaseio.com",
+    projectId: "integrador-f9629",
+    storageBucket: "integrador-f9629.appspot.com",
+    messagingSenderId: "250744788489",
+    appId: "1:250744788489:web:6b220c3c3e80b334f4cad8"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  var db = firebase.firestore();
+</script>
+  <div id="loading"></div>
   <div id="page">
-    <div class="container">
-      <h1>Solicitud Franquiciatario</h1>
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6">
-          <form id="frm-solicitud">
-            <div class="form-group">
-              <label>Grupo Franquiciatario </label>
-              <select name="grupo" id="cbGrupo" class="form-control">
-                <option value="" selected disabled>Seleccione una opcion</option>
-              </select>
+        <div class="col-md-5">
+          <div class="card">
+            <div class="card-body">
+              <div class="p-4 m-4 text-center">
+                <img src="img/logo.svg" alt="logo" class="img-fluid mb-4 flip-in-ver-right">
+                <h2 class="title">Solicitud Franquiciatario</h2>
+              </div>
             </div>
-            <div class="form-group">
-              <label>Ciudad </label>
-              <select name="ciudad" id="cbCiudad" class="form-control">
-                <option value="" selected disabled>Seleccione una opcion</option>
-              </select>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="card">
+            <div class="card-body">
+              <form id="frm-solicitud">
+                <div class="form-group">
+                  <label><img src="img/grupo.svg" width="24px" class="mr-2">Grupo Franquiciatario </label>
+                  <select name="grupo" id="cbGrupos" class="form-control" required>
+                    <option value="" selected disabled>Seleccione una opcion</option>
+                  </select>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label><img src="img/map-location.svg" width="24px" class="mr-2">Estado </label>
+                      <select name="estado" id="cbEstados" class="form-control" required>
+                        <option value="" selected disabled>Seleccione una opcion</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label><img src="img/checklist.svg" width="24px" class="mr-2">Formato Impreso</label>
+                      <select name="formatoImpreso" id="cbFormatosImpresos" class="form-control">
+                        <option value="" selected disabled>Seleccione una opcion</option>
+                        <option value="Lona">Lona</option>
+                        <option value="Banner">Banner</option>
+                        <option value="Vinil">Vinil</option>
+                        <option value="Menú board">Menú board</option>
+                        <option value="Menú carta">Menú carta</option>
+                        <option value="Cartelera">Cartelera</option>
+                        <option value="Flyer">Flyer</option>
+                        <option value="Espectacular">Espectacular</option>
+                        <option value="Otro">Otro</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label><img src="img/map-location.svg" width="24px" class="mr-2">Ciudad </label>
+                      <select name="ciudad" id="cbCiudades" class="form-control" required>
+                        <option value="" selected disabled>Seleccione una opcion</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label><img src="img/checklist.svg" width="24px" class="mr-2">Formato Digital </label>
+                      <select name="formatoDigital" id="cbFormatosDigitales" class="form-control">
+                        <option value="" selected disabled>Seleccione una opcion</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Video Facebook">Video Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Instagram Story">Instagram Story</option>
+                        <option value="Web - Desktop">Web - Desktop</option>
+                        <option value="Web - Tablet">Web - Tablet</option>
+                        <option value="Web - Mobile">Web - Mobile</option>
+                        <option value="Google Ad">Google Ad</option>
+                        <option value="Carrusel Facebook">Carrusel Facebook</option>
+                        <option value="Otro">Otro</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label><img src="img/map-location.svg" width="24px" class="mr-2">Sucursal </label>
+                      <select name="sucursal" id="cbSucursales" class="form-control" required>
+                        <option value="" selected disabled>Seleccione una opcion</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label><img src="img/checklist.svg" width="24px" class="mr-2">Otros formatos </label>
+                      <select name="otrosFormatos" id="cbOtrosFormatos" class="form-control">
+                        <option value="" selected disabled>Seleccione una opcion</option>
+                        <option value="Spot radio">Spot radio</option>
+                        <option value="Mención radio">Mención radio</option>
+                        <option value="Prensa">Prensa</option>
+                        <option value="Material RRHH">Material RRHH</option>
+                        <option value="Otro ">Otro </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label><img src="img/pizza.svg" width="24px" class="mr-2">Promoción / solicitud específica </label>
+                  <input type="text" name="promocion_solicitud" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label><img src="img/pizza.svg" width="24px" class="mr-2">Medida </label>
+                  <input type="text" name="medida" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label><img src="img/pizza.svg" width="24px" class="mr-2">Duración </label>
+                  <input type="text" name="duracion" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label><img src="img/pizza.svg" width="24px" class="mr-2">Legales </label>
+                  <input type="text" name="legales" class="form-control">
+                </div>
+                <div id="checkboxs" class="my-2 p-4 text-center">
+                  <div class="form-check form-check-inline">
+                    <label for="stackedCheck1" class="form-check-label mr-2">Caption</label>
+                    <input id="stackedCheck1" name="caption" class="form-check-input" value="si" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" checked>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <label for="stackedCheck2" class="form-check-label mr-2">Copy</label>
+                    <input id="stackedCheck2" name="copy" class="form-check-input" value="si" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" checked>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <label for="stackedCheck3" class="form-check-label mr-2">Pauta</label>
+                    <input id="stackedCheck3" name="pauta" class="form-check-input" value="si" type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" checked>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label><img src="img/information.svg" width="24px" class="mr-2">Información adicional / Observaciones</label>
+                  <textarea name="observaciones" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                  <label><img src="img/idea.svg" width="24px" class="mr-2">Nombre Completo</label>
+                  <input type="text" name="nombre" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label><img src="img/mail.svg" width="24px" class="mr-2">Correo Electronico</label>
+                  <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="my-4">
+                  <button class="btn btn-primary">Solicitar</button>
+                </div>
+              </form>
             </div>
-            <div class="form-group">
-              <label>Sucursal </label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Formato Impreso </label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Formato Digital </label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Otros formatos </label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Promoción / solicitud específica </label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Medida </label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Duración </label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Legales </label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Caption </label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Copy </label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Pauta </label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Información adicional / Observaciones</label>
-              <input type="text" class="form-control">
-            </div>
-            <button class="btn btn-primary">Solicitar</button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
@@ -96,19 +192,11 @@
   <script src="js/linq.js"></script>
   <script src="js/handlebars-v4.2.0.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.5.0/js/bootstrap4-toggle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
   <script src="js/main.js"></script>
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. --
-  <script>
-  window.ga = function() { ga.q.push(arguments) };
-  ga.q = [];
-  ga.l = +new Date;
-  ga('create', 'UA-XXXXX-Y', 'auto');
-  ga('set', 'transport', 'beacon');
-  ga('send', 'pageview')
-
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
-  -->
 </body>
 
 </html>

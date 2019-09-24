@@ -1,18 +1,22 @@
 /*! HTML5 Boilerplate v7.2.0 | MIT License | https://html5boilerplate.com/ */
+
 /* main.css 2.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
 /*
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
  * Kroc Camen, and the H5BP dev community and team.
  */
+
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+
 html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
 }
+
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -22,17 +26,21 @@ html {
  *
  * Customize the background color to match your design.
  */
+
 ::-moz-selection {
   background: #b3d4fc;
   text-shadow: none;
 }
+
 ::selection {
   background: #b3d4fc;
   text-shadow: none;
 }
+
 /*
  * A better looking default horizontal rule
  */
+
 hr {
   display: block;
   height: 1px;
@@ -41,11 +49,13 @@ hr {
   margin: 1em 0;
   padding: 0;
 }
+
 /*
  * Remove the gap between audio, canvas, iframes,
  * images, videos and the bottom of their containers:
  * https://github.com/h5bp/html5-boilerplate/issues/440
  */
+
 audio,
 canvas,
 iframe,
@@ -54,46 +64,65 @@ svg,
 video {
   vertical-align: middle;
 }
+
 /*
  * Remove default fieldset styles.
  */
+
 fieldset {
   border: 0;
   margin: 0;
   padding: 0;
 }
+
 /*
  * Allow only vertical resizing of textareas.
  */
+
 textarea {
   resize: vertical;
 }
+
 /* ==========================================================================
    Browser Upgrade Prompt
    ========================================================================== */
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
   color: #000;
   padding: 0.2em 0;
 }
+
 /* ==========================================================================
    @zkar13
    ========================================================================== */
+@highdensity: ~"only screen and (-webkit-min-device-pixel-ratio: 1.5)",
+  ~"only screen and (min--moz-device-pixel-ratio: 1.5)",
+  ~"only screen and (-o-min-device-pixel-ratio: 3/2)",
+  ~"only screen and (min-device-pixel-ratio: 1.5)";
+@mobile: ~"only screen and (max-width: 529px)";
+@tablet: ~"only screen and (min-width: 530px) and (max-width: 949px)";
+@desktop: ~"only screen and (min-width: 950px) and (max-width: 1128px)";
+@desktop-xl: ~"only screen and (min-width: 1129px)";
+
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  //user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 body {
   background: #eee url(../img/fondo.jpg) no-repeat center center fixed;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   background-size: cover;
 }
+
 #loading {
   height: 100vh;
   width: 100vw;
@@ -104,54 +133,46 @@ body {
   left: 0;
   z-index: 999;
 }
+
 .form-group {
   margin-bottom: 20px;
+
+  &>label {
+    display: block;
+    font-weight: 600;
+
+    & img {
+      .flip-in-ver-right;
+    }
+  }
 }
-.form-group > label {
-  display: block;
-  font-weight: 600;
-}
-.form-group > label img {
-  -webkit-animation: flip-in-ver-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-          animation: flip-in-ver-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
+
 .title {
   color: #077954;
   text-transform: uppercase;
   font-weight: 900;
   font-size: 22px;
 }
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
 .flip-in-ver-right {
-  -webkit-animation: flip-in-ver-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-          animation: flip-in-ver-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: flip-in-ver-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
-@-webkit-keyframes flip-in-ver-right {
-  0% {
-    -webkit-transform: rotateY(-80deg);
-            transform: rotateY(-80deg);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: rotateY(0);
-            transform: rotateY(0);
-    opacity: 1;
-  }
-}
+
 @keyframes flip-in-ver-right {
   0% {
-    -webkit-transform: rotateY(-80deg);
-            transform: rotateY(-80deg);
+    transform: rotateY(-80deg);
     opacity: 0;
   }
+
   100% {
-    -webkit-transform: rotateY(0);
-            transform: rotateY(0);
+    transform: rotateY(0);
     opacity: 1;
   }
 }
+
 label.error {
   color: red;
   font-weight: 600;
@@ -160,12 +181,16 @@ label.error {
   padding: 8px;
   background: #ffeae8;
 }
+
+
 /*
  * Hide visually and from screen readers
  */
+
 .hidden {
   display: none !important;
 }
+
 /*
 * Hide only visually, but have it available for screen readers:
 * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
@@ -174,6 +199,7 @@ label.error {
 *    causes content to wrap 1 word per line:
 *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
 */
+
 .sr-only {
   border: 0;
   clip: rect(0, 0, 0, 0);
@@ -186,11 +212,13 @@ label.error {
   width: 1px;
   /* 1 */
 }
+
 /*
 * Extends the .sr-only class to allow the element
 * to be focusable when navigated to via the keyboard:
 * https://www.drupal.org/node/897638
 */
+
 .sr-only.focusable:active,
 .sr-only.focusable:focus {
   clip: auto;
@@ -201,12 +229,15 @@ label.error {
   white-space: inherit;
   width: auto;
 }
+
 /*
 * Hide visually and from screen readers, but maintain layout
 */
+
 .invisible {
   visibility: hidden;
 }
+
 /*
 * Clearfix: contain floats
 *
@@ -218,6 +249,7 @@ label.error {
 * 2. The use of `table` rather than `block` is only necessary if using
 *    `:before` to contain the top-margins of child elements.
 */
+
 .clearfix:before,
 .clearfix:after {
   content: " ";
@@ -225,45 +257,60 @@ label.error {
   display: table;
   /* 2 */
 }
+
 .clearfix:after {
   clear: both;
 }
+
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
    Modify as content requires.
    ========================================================================== */
+
 @media only screen and (min-width: 35em) {
   /* Style adjustments for viewports that meet the condition */
 }
-@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+
+@media print,
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */
 }
+
 /* ==========================================================================
    Print styles.
    Inlined to avoid the additional HTTP request:
    https://www.phpied.com/delay-loading-your-print-css/
    ========================================================================== */
+
 @media print {
+
   *,
   *:before,
   *:after {
     background: transparent !important;
     color: #000 !important;
     /* Black prints faster */
+    -webkit-box-shadow: none !important;
     box-shadow: none !important;
     text-shadow: none !important;
   }
+
   a,
   a:visited {
     text-decoration: underline;
   }
+
   a[href]:after {
-    content: " (" attr(href) ")";
+    content: " ("attr(href) ")";
   }
+
   abbr[title]:after {
-    content: " (" attr(title) ")";
+    content: " ("attr(title) ")";
   }
+
   /*
      * Don't show links that are fragment identifiers,
      * or use the `javascript:` pseudo protocol
@@ -272,14 +319,17 @@ label.error {
   a[href^="javascript:"]:after {
     content: "";
   }
+
   pre {
     white-space: pre-wrap !important;
   }
+
   pre,
   blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
+
   /*
      * Printing Tables:
      * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
@@ -287,16 +337,19 @@ label.error {
   thead {
     display: table-header-group;
   }
+
   tr,
   img {
     page-break-inside: avoid;
   }
+
   p,
   h2,
   h3 {
     orphans: 3;
     widows: 3;
   }
+
   h2,
   h3 {
     page-break-after: avoid;
