@@ -16,6 +16,11 @@ $(function() {
       var renderData = Handlebars.compile(tpl)(dataSolicitud);
 
       $("#frmAutorizarContainer").html(renderData);
+
+      $("#frm-solicitud").on("submit", function() {
+        Swal.fire("Listo", "Se ha enviado correctamente la informacion.", "success");
+        return false;
+      });
     });
   });
   //envia solicitud
