@@ -9,17 +9,51 @@ var _solicitud = "";
 $(function() {
   $("#loading").hide();
   //informacion de la solicitud
-  docRef = db.collection("solicitudes").doc(idSolicitud);
+  docRef = db.collection("solicitudes").doc(idSolicitud); +
+
   docRef.get().then(function(doc) {
     dataSolicitud = doc.data();
     $.get("_solicitud.html").then(function(tpl) {
+      console.log(idSolicitud, dataSolicitud);
+
+      dataSolicitud.muestraBotones = dataSolicitud.autorizado !== "false";
+
       var renderData = Handlebars.compile(tpl)(dataSolicitud);
 
       $("#frmAutorizarContainer").html(renderData);
-
+      //Autorizar
       $("#frm-solicitud").on("submit", function() {
-        Swal.fire("Listo", "Se ha enviado correctamente la informacion.", "success");
+        db.collection("solicitudes").doc(idSolicitud).update({
+          autorizado: true
+        }).then(function() {
+          Swal.fire("Listo", "Se autorizo correctamente la solicitud", "success");
+        }).catch(function(error) {
+          console.error("Error removing document: ", error);
+        });
+
         return false;
+      });
+      //Rechazar solicitud
+      $("#btnRechazar").on("click", function() {
+        Swal.fire({
+          title: 'Esta seguro de rechazar la solicitud?',
+          text: "Esta se borrara de forma permanente.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si!'
+        }).then((result) => {
+          if (result.value) {
+            db.collection("solicitudes").doc(idSolicitud).delete().then(function() {
+              Swal.fire("Listo", "Document successfully deleted!", "success").then(function() {
+                window.location.reload();
+              });
+            }).catch(function(error) {
+              console.error("Error removing document: ", error);
+            });
+          }
+        });
       });
     });
   });

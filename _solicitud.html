@@ -85,8 +85,14 @@
     <label>Nombre</label>
     <input type="text" value="{{nombre}}" class="form-control" disabled>
   </div>
-  <div class="my-4">
-    <button type="submit" class="btn btn-success">Autorizar</button>
-    <button type="button" class="btn btn-danger">Rechazar</button>
-  </div>
+  {{#if muestraBotones}}
+    <div class="my-4">
+      <button type="submit" class="btn btn-success">Autorizar</button>
+      <button id="btnRechazar" type="button" class="btn btn-danger" data-solicitud="">Rechazar</button>
+    </div>
+  {{else}}
+    <div class="bg-light m-2 p-4 text-center">
+      <h5>El pedido ya se encuentra autorizado</h5>
+    </div>
+  {{/if}}
 </form>
